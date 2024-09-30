@@ -1,0 +1,16 @@
+/*
+  Warnings:
+
+  - The primary key for the `animal` table will be changed. If it partially fails, the table could be left without primary key constraint.
+  - You are about to drop the column `personId` on the `animal` table. All the data in the column will be lost.
+  - Added the required column `ownerId` to the `Animal` table without a default value. This is not possible if the table is not empty.
+
+*/
+-- DropForeignKey
+ALTER TABLE `animal` DROP FOREIGN KEY `Animal_personId_fkey`;
+
+-- AlterTable
+ALTER TABLE `animal` DROP PRIMARY KEY,
+    DROP COLUMN `personId`,
+    ADD COLUMN `ownerId` INTEGER NOT NULL,
+    ADD PRIMARY KEY (`ownerId`, `name`);

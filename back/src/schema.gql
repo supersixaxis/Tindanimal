@@ -1,0 +1,72 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Person {
+  userId: Int!
+  firstName: String!
+  lastName: String!
+  email: String!
+  phoneNumber: String!
+}
+
+type Animal {
+  animalId: Int!
+  name: String!
+  dateOfBirth: String!
+  species: String!
+  breed: String!
+  color: String!
+  weight: Float!
+  ownerId: Float!
+}
+
+type Query {
+  getAllPersons: [Person!]!
+  getPerson(id: String!): Person!
+  getAllAnimals: [Animal!]!
+  getAnimal(id: String!): Animal!
+}
+
+type Mutation {
+  createPerson(createPersonDto: CreatePersonDto!): Person!
+  deletePerson(id: String!): Person!
+  updatePerson(id: String!, updatePersonDto: UpdatePersonDto!): Person!
+  createAnimal(createAnimalDto: CreateAnimalDto!): Animal!
+  deleteAnimal(id: String!): Animal!
+  updateAnimal(id: String!, updateAnimalDto: UpdateAnimalDto!): Animal!
+}
+
+input CreatePersonDto {
+  firstName: String!
+  lastName: String!
+  email: String!
+  phoneNumber: String!
+}
+
+input UpdatePersonDto {
+  firstName: String
+  lastName: String
+  email: String
+  phoneNumber: String
+}
+
+input CreateAnimalDto {
+  name: String!
+  dateOfBirth: String!
+  species: String!
+  breed: String!
+  color: String!
+  weight: Float!
+  ownerId: Float!
+}
+
+input UpdateAnimalDto {
+  name: String
+  dateOfBirth: String
+  species: String
+  breed: String
+  color: String
+  weight: Float
+  ownerId: Float
+}
