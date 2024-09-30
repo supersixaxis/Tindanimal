@@ -51,3 +51,44 @@ export const GET_ANIMAL = gql`
     }
   }
 `;
+
+
+export const GET_ANIMAL_STATISTICS = gql`
+  query GetAnimalStatistics {
+    oldestAnimal {
+      name
+      dateOfBirth
+    }
+    mostRepresentedSpecies {
+      species
+      count
+    }
+    ownerWithMostAnimals {
+      owner {
+        id
+        name
+        animalCount
+      }
+    }
+    ownerWithMostCats {
+      owner {
+        id
+        name
+        catCount
+      }
+    }
+    heaviestAnimal {
+      name
+      weight
+      owner {
+        name
+      }
+    }
+    heaviestGroup {
+      owner {
+        name
+        totalWeight
+      }
+    }
+  }
+`;

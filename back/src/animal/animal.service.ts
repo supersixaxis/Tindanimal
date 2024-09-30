@@ -41,4 +41,35 @@ export class AnimalService {
 
     return animalUpdated;
   }
+  async getOldestAnimal(): Promise<Animal> {
+    return this.prismaService.animal.findFirst({
+      orderBy: { dateOfBirth: 'asc' },
+    });
+  }
+  async getMostRepresentedSpecies(): Promise<{
+    species: string;
+    count: number;
+  }> {
+    const result = await this.prismaService.animal.groupBy({
+      by: ['species'],
+      _count: {
+        species: true,
+      },
+      orderBy: {
+        _count: {
+          species: 'desc',
+        },
+      },
+      take: 1,
+    });
+
+    if (result.length > 0) {
+      return {
+        species: result[0].species,
+        count: result[0]._count.species,
+      };
+    }
+
+    return null;
+  }
 }

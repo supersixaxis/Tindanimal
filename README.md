@@ -26,6 +26,10 @@ FRONTEND_URL=your_frontend_url
    - Create a new database in your database management system.
    - Add data to the database.
 
+5. Run the development server:
+```
+   npm run start:dev
+```
 
 ### Frontend Setup
 1. Navigate to the `front` directory:

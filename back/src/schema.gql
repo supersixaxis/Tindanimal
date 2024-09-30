@@ -26,6 +26,8 @@ type Query {
   getPerson(id: String!): Person!
   getAllAnimals: [Animal!]!
   getAnimal(id: String!): Animal!
+  oldestAnimal: Animal!
+  mostRepresentedSpecies: String!
 }
 
 type Mutation {

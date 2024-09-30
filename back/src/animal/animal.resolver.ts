@@ -53,4 +53,17 @@ export class AnimalResolver {
     }
     return animalUpdated;
   }
+  @Query(() => Animal)
+  async oldestAnimal() {
+    return this.animalService.getOldestAnimal();
+  }
+
+  @Query(() => String)
+  async mostRepresentedSpecies() {
+    const result = await this.animalService.getMostRepresentedSpecies();
+    if (result) {
+      return `${result.species} (${result.count})`;
+    }
+    return 'No species found';
+  }
 }
