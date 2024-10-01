@@ -1,4 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Animal } from '../animal/animal.model'; 
 
 @ObjectType()
 export class Person {
@@ -16,4 +17,7 @@ export class Person {
 
   @Field()
   phoneNumber: string;
+
+  @Field(() => [Animal], { nullable: 'itemsAndList' })
+  animals?: Animal[];
 }

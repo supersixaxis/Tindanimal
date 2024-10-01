@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { AnimalService } from './animal.service';
 import { Animal } from './animal.model';
 import { CreateAnimalDto } from './dto/createAnimalDto';
@@ -12,6 +12,14 @@ export class AnimalResolver {
   @Query(() => [Animal])
   async getAllAnimals() {
     return this.animalService.getAllAnimals();
+  }
+  @Query(() => [Animal])
+  async getPaginatedAnimals(
+    @Args('page', { type: () => Int, nullable: true }) page: number = 1,
+    @Args('limit', { type: () => Int, nullable: true }) limit: number = 10,
+  ) {
+    const offset = (page - 1) * limit;
+    return this.animalService.getPaginatedAnimals(offset, limit);
   }
 
   @Query(() => Animal)
@@ -65,5 +73,37 @@ export class AnimalResolver {
       return `${result.species} (${result.count})`;
     }
     return 'No species found';
+  }
+  @Query(() => String)
+  async ownerWithMostAnimals() {
+    const result = await this.animalService.getOwnerWithMostAnimals();
+    if (result) {
+      return `Owner ID: ${result.ownerId} with ${result.animalCount} cats`;
+    }
+    return 'No owner found';
+  }
+  @Query(() => String)
+  async ownerWithMostCats() {
+    const result = await this.animalService.getOwnerWithMostCats();
+    if (result) {
+      return `Owner ID: ${result.ownerId} with ${result.catCount} cats`;
+    }
+    return 'No owner found';
+  }
+  @Query(() => String)
+  async heaviestAnimal() {
+    const result = await this.animalService.getHeaviestAnimal();
+    if (result) {
+      return `Owner ID: ${result.ownerId} owns the heaviest animal, ${result.animalName}, weighing ${result.weight}.`;
+    }
+    return 'No animals found';
+  }
+  @Query(() => String)
+  async ownerWithHeaviestGroup() {
+    const result = await this.animalService.getOwnerWithHeaviestGroup();
+    if (result) {
+      return `Owner ID: ${result.ownerId} owns the heaviest group of animals with a total weight of ${result.totalWeight}.`;
+    }
+    return 'No animals found';
   }
 }

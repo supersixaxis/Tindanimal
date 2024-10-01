@@ -11,6 +11,17 @@ export const GET_PERSONS = gql`
   }
 `;
 
+export const GET_PAGINATED_PERSONS = gql`
+  query getPaginatedPersons($page: Int!, $limit: Int!) {
+    getPaginatedPersons(page: $page, limit: $limit) {
+      userId
+      firstName
+      lastName
+      email
+    }
+  }
+`;
+
 export const GET_PERSON = gql`
   query GetPerson($id: String!) {
     getPerson(id: $id) {
@@ -25,6 +36,20 @@ export const GET_PERSON = gql`
 export const GET_ANIMALS = gql`
   query {
     getAllAnimals {
+      animalId
+      name
+      dateOfBirth
+      species
+      breed
+      color
+      weight
+      ownerId
+    }
+  }
+`;
+export const GET_PAGINATED_ANIMALS = gql`
+  query getPaginatedAnimals($page: Int!, $limit: Int!) {
+    getPaginatedAnimals(page: $page, limit: $limit) {
       animalId
       name
       dateOfBirth

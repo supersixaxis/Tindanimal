@@ -11,6 +11,12 @@ export class PersonService {
   async getAllPersons(): Promise<Person[]> {
     return this.prismaService.person.findMany();
   }
+  async getPaginatedPersons(offset: number, limit: number): Promise<Person[]> {
+    return this.prismaService.person.findMany({
+      skip: offset,
+      take: limit,
+    });
+  }
 
   async getPersonById(id: string): Promise<Person> {
     const person = await this.prismaService.person.findUnique({

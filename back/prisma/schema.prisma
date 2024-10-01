@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-
 }
 
 datasource db {
@@ -16,14 +15,13 @@ datasource db {
 
 model Person {
   userId      Int      @id @default(autoincrement())
-  firstName   String 
-  lastName    String 
-  email       String   
-  phoneNumber String 
+  firstName   String
+  lastName    String
+  email       String
+  phoneNumber String
 }
-
-model Animal {
-  animalId    Int      @id @default(autoincrement())
+  model Animal {
+  animalId    Int    @id @default(autoincrement())
   name        String
   dateOfBirth String
   species     String

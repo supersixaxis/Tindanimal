@@ -2,14 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Person {
-  userId: Int!
-  firstName: String!
-  lastName: String!
-  email: String!
-  phoneNumber: String!
-}
-
 type Animal {
   animalId: Int!
   name: String!
@@ -18,16 +10,32 @@ type Animal {
   breed: String!
   color: String!
   weight: Float!
-  ownerId: Float!
+  ownerId: Int!
+  owner: Person
+}
+
+type Person {
+  userId: Int!
+  firstName: String!
+  lastName: String!
+  email: String!
+  phoneNumber: String!
+  animals: [Animal]
 }
 
 type Query {
   getAllPersons: [Person!]!
+  getPaginatedPersons(page: Int, limit: Int): [Person!]!
   getPerson(id: String!): Person!
   getAllAnimals: [Animal!]!
+  getPaginatedAnimals(page: Int, limit: Int): [Animal!]!
   getAnimal(id: String!): Animal!
   oldestAnimal: Animal!
   mostRepresentedSpecies: String!
+  ownerWithMostAnimals: String!
+  ownerWithMostCats: String!
+  heaviestAnimal: String!
+  ownerWithHeaviestGroup: String!
 }
 
 type Mutation {

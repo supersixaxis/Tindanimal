@@ -1,6 +1,6 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { PersonService } from './person.service';
-import { Person } from './person.model'; // Assure-toi que ton modèle Person est bien défini
+import { Person } from './person.model'; 
 import { CreatePersonDto } from './dto/createPersonDto';
 import { UpdatePersonDto } from './dto/updatePerson';
 import { NotFoundException } from '@nestjs/common';
@@ -12,6 +12,14 @@ export class PersonResolver {
   @Query(() => [Person])
   async getAllPersons() {
     return this.personService.getAllPersons();
+  }
+  @Query(() => [Person])
+  async getPaginatedPersons(
+    @Args('page', { type: () => Int, nullable: true }) page: number = 1,
+    @Args('limit', { type: () => Int, nullable: true }) limit: number = 10,
+  ) {
+    const offset = (page - 1) * limit;
+    return this.personService.getPaginatedPersons(offset, limit);
   }
 
   @Query(() => Person)
@@ -51,6 +59,6 @@ export class PersonResolver {
     if (!personUpdated) {
       throw new NotFoundException('Person not found');
     }
-    return personUpdated; // retourne la personne mise à jour
+    return personUpdated;
   }
 }

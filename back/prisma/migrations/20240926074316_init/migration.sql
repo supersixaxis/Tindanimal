@@ -12,6 +12,7 @@ CREATE TABLE `Person` (
 
 -- CreateTable
 CREATE TABLE `Animal` (
+    `animalId` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
     `dateOfBirth` DATETIME(3) NOT NULL,
     `species` VARCHAR(191) NOT NULL,
@@ -20,5 +21,5 @@ CREATE TABLE `Animal` (
     `weight` INTEGER NOT NULL,
     `ownerId` INTEGER NOT NULL,
 
-    PRIMARY KEY (`ownerId`, `name`)
+    PRIMARY KEY (`ownerId`, `animalId`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

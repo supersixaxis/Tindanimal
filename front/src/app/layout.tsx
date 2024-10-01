@@ -3,7 +3,7 @@
 import "./globals.css";
 import { ReactNode } from "react";
 import { ApolloProvider } from "@apollo/client";
-import client from "../graphql/client"; // Import your Apollo Client
+import client from "../graphql/client";
 
 interface RootLayoutProps {
   children: ReactNode;

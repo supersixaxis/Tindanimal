@@ -12,8 +12,8 @@ import { join } from 'path';
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'), // Schéma généré automatiquement
-      playground: true, // Active le Playground de GraphQL
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      playground: true,
     }),
     PersonModule,
     PrismaModule,
