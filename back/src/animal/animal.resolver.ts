@@ -62,10 +62,9 @@ export class AnimalResolver {
     return animalUpdated;
   }
   @Query(() => Animal)
-  async oldestAnimal() {
+  async oldestAnimal(): Promise<Animal> {
     return this.animalService.getOldestAnimal();
   }
-
   @Query(() => String)
   async mostRepresentedSpecies() {
     const result = await this.animalService.getMostRepresentedSpecies();
@@ -78,7 +77,7 @@ export class AnimalResolver {
   async ownerWithMostAnimals() {
     const result = await this.animalService.getOwnerWithMostAnimals();
     if (result) {
-      return `Owner ID: ${result.ownerId} with ${result.animalCount} cats`;
+      return `Owner ID: ${result.ownerId} with ${result.animalCount} animaux`;
     }
     return 'No owner found';
   }

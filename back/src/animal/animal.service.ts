@@ -43,15 +43,19 @@ export class AnimalService {
         animalId: parseInt(id),
       },
       data: updateAnimalDto,
-      
     });
 
     return animalUpdated;
   }
   async getOldestAnimal(): Promise<Animal> {
-    return this.prismaService.animal.findFirst({
-      orderBy: { dateOfBirth: 'asc' },
+    const animals = await this.prismaService.animal.findMany({
+      orderBy: {
+        dateOfBirth: 'asc',
+      },
+      take: 1,
     });
+
+    return animals[0];
   }
   async getMostRepresentedSpecies(): Promise<{
     species: string;
