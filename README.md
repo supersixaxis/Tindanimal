@@ -24,6 +24,32 @@ FRONTEND_URL=your_frontend_url
 
 4. Create a database:
    - Create a new database in your database management system.
+```
+   CREATE TABLE `Person` (
+    `userId` INTEGER NOT NULL AUTO_INCREMENT,
+    `firstName` VARCHAR(191) NOT NULL,
+    `lastName` VARCHAR(191) NOT NULL,
+    `email` VARCHAR(191) NOT NULL,
+    `phoneNumber` VARCHAR(191) NOT NULL,
+
+    UNIQUE INDEX `Person_email_key`(`email`),
+    PRIMARY KEY (`userId`)
+)
+```
+```
+CREATE TABLE `Animal` (
+    `animalId` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(191) NOT NULL,
+    `dateOfBirth` VARCHAR(191) NOT NULL,
+    `species` VARCHAR(191) NOT NULL,
+    `breed` VARCHAR(191) NOT NULL,
+    `color` VARCHAR(191) NOT NULL,
+    `weight` INTEGER NOT NULL,
+    `ownerId` INTEGER NOT NULL,
+
+    PRIMARY KEY (`animalId`)
+)
+```
    - Add data to the database.
 
 5. Run the development server:
